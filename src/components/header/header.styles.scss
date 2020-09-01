@@ -1,0 +1,35 @@
+.header {
+  width: 100%;
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-bottom: 4px solid #f7e705;
+  align-items: center;
+  background-color: rgb(19, 11, 37);
+  padding-left: 40px;
+  padding-right: 40px;
+  box-sizing: border-box;
+
+  .logo-container {
+    margin-left: 1rem;
+
+    .logo {
+      color: wheat;
+      z-index: 200;
+    }
+  }
+
+  .options {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .option {
+      padding: 10px 20px;
+      font-size: 1.5rem;
+      color: whitesmoke;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+.collection-item {
+  width: 22%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 350px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.collection-item .image {
+  width: 100%;
+  height: 90%;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 3px solid orange;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.collection-item .collection-footer {
+  width: 100%;
+  height: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 18px;
+  background-color: #0b0c10;
+  color: whitesmoke;
+  padding-left: 7px;
+  padding-right: 7px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.collection-item .collection-footer .name {
+  width: 90%;
+  letter-spacing: 0.08rem;
+}
+
+.collection-item .collection-footer .price {
+  width: 10%;
+}
+/*# sourceMappingURL=collection-item.styles.css.map */
