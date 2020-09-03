@@ -2,10 +2,15 @@ import React from "react";
 
 import "./header.styles.scss";
 
+// for importing svg file
 import { ReactComponent as Logo } from "../../assets/crown.svg";
+// for using routing in react using Link which almost works like <a> anchor tag
 import { Link } from "react-router-dom";
 
+// for auth.signOut() and exit from auth status
 import { auth } from "../../firebase.utils";
+
+import { connect } from "react-redux";
 
 const Header = ({ currentUser }) => {
   return (
@@ -39,4 +44,10 @@ const Header = ({ currentUser }) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.user.currentUser,
+  };
+};
+
+export default connect(mapStateToProps)(Header);

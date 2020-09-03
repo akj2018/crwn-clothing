@@ -9,6 +9,12 @@ import Header from "./components/header/header.component";
 
 import { auth, createUserProfile } from "./firebase.utils";
 
+// To use the setCurrentUser functuon instead of calling setState on state
+import { connect } from "react-redux";
+
+// action creator to pass into dispatch function
+import { setCurrentUser } from "./redux/user/user.actions";
+
 class App extends React.Component {
   constructor() {
     super();
@@ -32,23 +38,15 @@ class App extends React.Component {
         // the advantage of this method is it still sends a snapshot the moment our code initialise
         userRef.onSnapshot((snapshot) => {
           // snapshot object has .data method which gives all the data of the user stored in database or sign up in database currently
-          this.setState(
-            {
-              currentUser: {
-                id: snapshot.id,
-                ...snapshot.data(),
-                createdAt: snapshot.data().createdAt.toDate(),
-              },
-            },
-            () => {
-              console.log(this.state);
-            }
-          );
+          this.props.setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data(),
+            createdAt: snapshot.data().createdAt.toDate(),
+          });
+          console.log(this.state);
         });
       } else {
-        this.setState({
-          currentUser: userAuth,
-        });
+        this.props.setCurrentUser(userAuth);
       }
     });
   }
@@ -60,7 +58,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header currentUser={this.state.currentUser} />
+        <Header />
         <Switch>
           <Route exact path="/shop" component={ShopPage} />
           <Route exact path="/" component={HomePage} />
@@ -71,4 +69,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(App);
