@@ -17,7 +17,9 @@ class SignIn extends React.Component {
     const { email, password } = this.state;
 
     try {
+      // Async method that will update the auth and sets new curent user
       await auth.signInWithEmailAndPassword(email, password);
+      // Clear out the form
       this.setState({
         email: "",
         password: "",
@@ -58,7 +60,11 @@ class SignIn extends React.Component {
           />
           <div className="buttons">
             <CustomButton type="submit">Submit Form</CustomButton>
-            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+            <CustomButton
+              type="button"
+              onClick={signInWithGoogle}
+              isGoogleSignIn
+            >
               Sign In With Google
             </CustomButton>
           </div>

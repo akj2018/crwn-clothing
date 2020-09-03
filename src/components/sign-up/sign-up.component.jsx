@@ -33,11 +33,16 @@ class SignUp extends React.Component {
     }
 
     try {
+      // user property is the userAuth required in createUserProfile()
       const { user } = await auth.createUserWithEmailAndPassword(
         email,
         password
       );
+
+      // wait for profile to get created and current user updation in app.js
       await createUserProfile(user, { displayName: username });
+
+      // then finally clear out the form
       this.setState({
         username: "",
         email: "",

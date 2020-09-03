@@ -20,11 +20,18 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    // onAuthStateChange() runs wherever user logged in usign email and password or using Google sign In or user Sign Out
+    // It retruns a method which can unsubscrube the listener when we don't need it to prevent memory leak
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      // Checking if user exists or not and dont want to set if user is signing out
       if (userAuth) {
+        // Get Reference object for document
         const userRef = await createUserProfile(userAuth);
 
+        // onSnapshot() listener checks for any updation in database at that reference
+        // the advantage of this method is it still sends a snapshot the moment our code initialise
         userRef.onSnapshot((snapshot) => {
+          // snapshot object has .data method which gives all the data of the user stored in database or sign up in database currently
           this.setState(
             {
               currentUser: {
@@ -38,10 +45,11 @@ class App extends React.Component {
             }
           );
         });
+      } else {
+        this.setState({
+          currentUser: userAuth,
+        });
       }
-      this.setState({
-        currentUser: userAuth,
-      });
     });
   }
 

@@ -16,17 +16,30 @@ var firebaseConfig = {
 export const createUserProfile = async (userAuth, additionalData) => {
   console.log("Data PassedIn Function", userAuth, additionalData);
   if (!userAuth) return;
+
+  // Quering For Refrence Object from Firestore
+  // We get Document Reference - used to check whether to include data or not
   const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+  // Get a snapshot reference object
   const snapshot = await userRef.get();
+
+  // snapshot.exists says whether user already present in database or not
   if (!snapshot.exists) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
-    userRef.set({
-      displayName,
-      email,
-      createdAt,
-      ...additionalData,
-    });
+    try {
+      // we need to use refrence object for setting something in database
+      // asynchronous function call so need to use await
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
   return userRef;
 };
