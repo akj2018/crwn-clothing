@@ -29,10 +29,10 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <div className="sign-in" onSubmit={this.handleSubmit}>
+      <div className="sign-in">
         <h2 className="title">I Already Have An Account</h2>
         <span>Sign in with your email and password</span>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <FormInput
             type="email"
             name="email"

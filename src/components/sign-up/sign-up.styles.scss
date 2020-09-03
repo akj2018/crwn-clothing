@@ -1,15 +1,11 @@
-.sign-in {
+.sign-up {
   padding: 10px 30px;
   width: 450px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   .title {
     margin: 10px 0px;
-  }
-
-  .buttons {
-    display: flex;
-    justify-content: space-between;
   }
 }
