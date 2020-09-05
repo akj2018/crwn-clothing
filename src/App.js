@@ -36,7 +36,6 @@ class App extends React.Component {
             ...snapshot.data(),
             createdAt: snapshot.data().createdAt.toDate(),
           });
-          console.log(this.state);
         });
       } else {
         this.props.setCurrentUser(userAuth);
