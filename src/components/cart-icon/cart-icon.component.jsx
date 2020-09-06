@@ -10,6 +10,7 @@ import { toggleCartHidden } from "../../redux/cart/cart.actions";
 
 // to use selectCartItemsCount Selector so that component do not re-render when changes in auth are made and not in cartItems
 import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
+import { createStructuredSelector } from "reselect";
 
 const CartIcon = ({ toggleCartHidden, itemCount }) => {
   return (
@@ -20,11 +21,9 @@ const CartIcon = ({ toggleCartHidden, itemCount }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    itemCount: selectCartItemsCount(state),
-  };
-};
+const mapStateToProps = createStructuredSelector({
+  itemCount: selectCartItemsCount,
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {
