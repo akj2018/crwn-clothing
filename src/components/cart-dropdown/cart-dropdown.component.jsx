@@ -6,6 +6,9 @@ import "./cart-dropdown.styles.scss";
 import CustomButton from "../custom-button/custom-button.component";
 import CartItem from "../cart-item/cart-item.component";
 
+// To prevent from re-render when changes are made only in auth state and not in cart Items
+import { selectCartItems } from "../../redux/cart/cart.selectors";
+
 const CartDropdown = ({ cartItems }) => {
   return (
     <div className="cart-dropdown">
@@ -19,9 +22,9 @@ const CartDropdown = ({ cartItems }) => {
   );
 };
 
-const mapStateToProps = ({ cart: { cartItems } }) => {
+const mapStateToProps = (state) => {
   return {
-    cartItems,
+    cartItems: selectCartItems(state),
   };
 };
 

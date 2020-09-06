@@ -5,15 +5,25 @@ import "./cart-icon.styles.scss";
 import { ReactComponent as Icon } from "../../assets/shopping-bag.svg";
 
 import { connect } from "react-redux";
+// To make the cartDropdown appear-dissapear when icon is clicked
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
 
-const CartIcon = ({ toggleCartHidden }) => {
+// to use selectCartItemsCount Selector so that component do not re-render when changes in auth are made and not in cartItems
+import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
+
+const CartIcon = ({ toggleCartHidden, itemCount }) => {
   return (
     <div className="cart-icon" onClick={toggleCartHidden}>
       <Icon className="shopping-icon" />
-      <span className="item-count">2</span>
+      <span className="item-count">{itemCount}</span>
     </div>
   );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    itemCount: selectCartItemsCount(state),
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -22,4 +32,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(CartIcon);
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
