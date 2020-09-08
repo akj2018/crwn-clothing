@@ -14,7 +14,6 @@ var firebaseConfig = {
 };
 
 export const createUserProfile = async (userAuth, additionalData) => {
-  console.log("Data PassedIn Function", userAuth, additionalData);
   if (!userAuth) return;
 
   // Quering For Refrence Object from Firestore
