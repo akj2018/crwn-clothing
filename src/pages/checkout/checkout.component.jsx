@@ -14,6 +14,7 @@ import {
 } from "../../redux/cart/cart.selectors";
 
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
+import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
 
 const CheckoutPage = ({ cartItems, total }) => {
   return (
@@ -38,7 +39,17 @@ const CheckoutPage = ({ cartItems, total }) => {
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <span className="total">TOTAL: ${total}</span>
+      <div className="total">TOTAL: ${total}</div>
+      <div className="test-warning">
+        *Please Using The Following Test Credit card For Payments*
+        <ul>
+          <li>NUMBER: 4242424242424242 </li>
+          <li>BRAND: Visa </li>
+          <li>CVC: Any 3 digits </li>
+          <li>DATE: Any future date </li>
+        </ul>
+      </div>
+      <StripeCheckoutButton price={total} />
     </div>
   );
 };
