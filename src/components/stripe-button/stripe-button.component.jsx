@@ -22,7 +22,7 @@ export const StripeCheckoutButton = ({ price }) => {
       label="Pay Now"
       amount={priceForStripe}
       currency="USD"
-      panelLabel="Amount To Be Paid:"
+      panelLabel="Amount:"
       shippingAddress
       billingAddress
     />
