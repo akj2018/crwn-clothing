@@ -1,6 +1,13 @@
 import React from "react";
 
 import "./checkout.styles.scss";
+import {
+  CheckoutHeaderBlockContainer,
+  CheckoutHeaderContainer,
+  CheckoutPageContainer,
+  TestWarningContainer,
+  TotalContainer,
+} from "./checkout.styles";
 
 // for using redux
 import { connect } from "react-redux";
@@ -18,29 +25,29 @@ import StripeCheckoutButton from "../../components/stripe-button/stripe-button.c
 
 const CheckoutPage = ({ cartItems, total }) => {
   return (
-    <div className="checkout-page">
-      <div className="checkout-header">
-        <div className="header-block">
+    <CheckoutPageContainer>
+      <CheckoutHeaderContainer>
+        <CheckoutHeaderBlockContainer>
           <span>Product</span>
-        </div>
-        <div className="header-block">
+        </CheckoutHeaderBlockContainer>
+        <CheckoutHeaderBlockContainer>
           <span>Description</span>
-        </div>
-        <div className="header-block">
+        </CheckoutHeaderBlockContainer>
+        <CheckoutHeaderBlockContainer>
           <span>Quantity</span>
-        </div>
-        <div className="header-block">
+        </CheckoutHeaderBlockContainer>
+        <CheckoutHeaderBlockContainer>
           <span>Price</span>
-        </div>
-        <div className="header-block">
+        </CheckoutHeaderBlockContainer>
+        <CheckoutHeaderBlockContainer>
           <span>Remove</span>
-        </div>
-      </div>
+        </CheckoutHeaderBlockContainer>
+      </CheckoutHeaderContainer>
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <div className="total">TOTAL: ${total}</div>
-      <div className="test-warning">
+      <TotalContainer>TOTAL: ${total}</TotalContainer>
+      <TestWarningContainer>
         *Please Using The Following Test Credit card For Payments*
         <ul>
           <li>NUMBER: 4242424242424242 </li>
@@ -48,9 +55,9 @@ const CheckoutPage = ({ cartItems, total }) => {
           <li>CVC: Any 3 digits </li>
           <li>DATE: Any future date </li>
         </ul>
-      </div>
+      </TestWarningContainer>
       <StripeCheckoutButton price={total} />
-    </div>
+    </CheckoutPageContainer>
   );
 };
 

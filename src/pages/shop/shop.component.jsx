@@ -1,6 +1,7 @@
 import React from "react";
 
-import "./shop.styles.scss";
+// import "./shop.styles.scss";
+import { ShopPageContainer } from "./shop.styles";
 
 import { Route } from "react-router-dom";
 
@@ -9,10 +10,10 @@ import CollectionPage from "../collection/collection.component";
 
 const ShopPage = ({ match }) => {
   return (
-    <div className="shop">
+    <ShopPageContainer>
       <Route exact path={`${match.url}`} component={CollectionsOverview} />
       <Route path={`${match.url}/:collectionId`} component={CollectionPage} />
-    </div>
+    </ShopPageContainer>
   );
 };
 

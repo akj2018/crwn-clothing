@@ -1,11 +1,11 @@
 import React from "react";
 
-import "./header.styles.scss";
+// import "./header.styles.scss";
 
 // for importing svg file
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 // for using routing in react using Link which almost works like <a> anchor tag
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 // for auth.signOut() and exit from auth status
 import { auth } from "../../firebase.utils";
@@ -21,37 +21,40 @@ import { selectCurrentUser } from "../../redux/user/user.selectors";
 // for making selector code simpler
 import { createStructuredSelector } from "reselect";
 
+// For Using CSS Styled Components
+import {
+  HeaderContainer,
+  LogoContainer,
+  OptionLink,
+  OptionsContainer,
+} from "./header.styles";
+
 const Header = ({ currentUser, hidden }) => {
   return (
-    <div className="header">
-      <Link to="/" className="logo-container">
-        <Logo className="logo" />
-      </Link>
-      <div className="options">
-        <Link className="option" to="/shop">
-          SHOP
-        </Link>
-        <Link className="option" to="/shop">
-          CONTACT
-        </Link>
+    <HeaderContainer>
+      <LogoContainer to="/">
+        <Logo />
+      </LogoContainer>
+      <OptionsContainer>
+        <OptionLink to="/shop">SHOP</OptionLink>
+        <OptionLink to="/shop">CONTACT</OptionLink>
         {currentUser ? (
-          <div
+          <OptionLink
+            as="div"
             className="option"
             onClick={() => {
               auth.signOut();
             }}
           >
             SIGN OUT
-          </div>
+          </OptionLink>
         ) : (
-          <Link className="option" to="/signin">
-            SIGN IN
-          </Link>
+          <OptionLink to="/signin">SIGN IN</OptionLink>
         )}
         <CartIcon />
-      </div>
+      </OptionsContainer>
       {hidden ? null : <CartDropdown />}
-    </div>
+    </HeaderContainer>
   );
 };
 
