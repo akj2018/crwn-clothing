@@ -13,6 +13,26 @@ var firebaseConfig = {
   measurementId: "G-43JYH9PJJM",
 };
 
+// Utility method for stroing collections data automatically without manually doing it
+export const createCollectionAndDocuments = async (
+  collectionKey,
+  itemsToAdd
+) => {
+  // Firebase creates a cllectionRef object for us and then when we add documents to it then forebase will create both collecgtion and document in firestore.
+  const collectionRef = firestore.collection(collectionKey);
+
+  // Batch/ collect all requests and combine into a single batch
+  const batch = firestore.batch();
+
+  itemsToAdd.forEach((item) => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, item);
+  });
+
+  // commit() returns a promise which resoves to null if successfull
+  return await batch.commit();
+};
+
 export const createUserProfile = async (userAuth, additionalData) => {
   if (!userAuth) return;
 

@@ -16,7 +16,7 @@ import { connect } from "react-redux";
 // action creator to pass into dispatch function
 import { setCurrentUser } from "./redux/user/user.actions";
 
-// for alternate simpler code
+// for alternate simpler code - selectors
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
 
